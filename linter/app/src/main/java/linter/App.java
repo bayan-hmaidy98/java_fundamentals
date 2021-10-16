@@ -3,55 +3,36 @@
  */
 package linter;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
+
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+
+
 
 public class App {
     public String getGreeting() {
         return "Hello World!";
     }
 
-    public String handlingWeatherData (int [][] arrayOfArrays){
-        int min = arrayOfArrays[0][0];
-        int max = arrayOfArrays[0][0];
+    public String linter(Path path) throws IOException {
+        int counter = 0;
+        String error = "";
 
-        HashSet <Integer> temperature = new HashSet<Integer>();
-        ArrayList<Integer> notFound = new ArrayList<Integer>();
-        for (int [] array : arrayOfArrays){
-            for (int num : array) {
-                if (num > max) {
-                    max = num;
-                }
-                if (num < min) {
-                    min = num;
-                }
-                temperature.add(num);
+        BufferedReader reader = Files.newBufferedReader(path);
+        String line = reader.readLine();
+
+        while (line != null) {
+            if (!line.contains("if") && !line.contains("else") && !line.endsWith("{") && !line.endsWith("}") && !line.contains("return") && !line.endsWith(";") && !line.isEmpty()) {
+                error += ("Line " + counter + ": Missing semicolon.\n");
+
             }
+            line = reader.readLine();
         }
-        for (int i = min +1 ; i < max ; i++){
-            if(!temperature.contains(i)){
-                notFound.add(i);
-            }
-        }
-        String returnedString = "High: " + max + "/nLow" + min;
-        for(int iter: notFound){
-            returnedString+= "/nNever saw temperature: " + iter;
-        }
-        return returnedString;
+        return error;
     }
-
-//    public String tally(List<String> list){
-//        int votes;
-//        HashSet<String> names = new HashSet<String>(list);
-//        HashMap<String, Integer> vote = new HashMap();
-//        for(String name : list){
-//            if(list.contains(name)){
-//                votes++;
-//            }
-//        }
-//    }
 
     public static void main(String[] args) {
         System.out.println(new App().getGreeting());
