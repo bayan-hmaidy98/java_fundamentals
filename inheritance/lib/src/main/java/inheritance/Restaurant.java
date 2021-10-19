@@ -2,7 +2,7 @@ package inheritance;
 
 import java.util.ArrayList;
 
-public class Restaurant {
+public class Restaurant implements Reviewable {
 
     private String name;
     private float rating;
@@ -51,20 +51,12 @@ public class Restaurant {
         this.price = price;
     }
 
-    public String addReview(Review review){
-        // ensure the user enter a valid rate
-        if(review.numberOfStars >5 || review.numberOfStars <1 ){
-            return "Rate is not valid!";
-        }
-        else{
-            Review review1 = new Review(review.body, review.author, review.numberOfStars);
-            getRestaurantReviews().add(String.valueOf(review1));
-            numberOfRates++;
-            rate = (review.numberOfStars + rate)/numberOfRates;
-            this.rating =rate;
-
-            return "Your rate will help us to modify our service.";
-        }
+    public void addReview(Review review){
+        Review review1 = new Review(review.body, review.author, review.numberOfStars);
+        getRestaurantReviews().add(String.valueOf(review1));
+        numberOfRates++;
+        rate = (review.numberOfStars + rate)/numberOfRates;
+        this.rating =rate;
     }
 
     @Override
@@ -72,7 +64,10 @@ public class Restaurant {
         return "Restaurant{" +
                 "name='" + name + '\'' +
                 ", rating=" + rating +
+                ", rate=" + rate +
+                ", numberOfRates=" + numberOfRates +
                 ", price='" + price + '\'' +
+                ", restaurantReviews=" + restaurantReviews +
                 '}';
     }
 }

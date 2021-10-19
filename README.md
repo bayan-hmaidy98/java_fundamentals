@@ -9,3 +9,8 @@
 ## Lab06
 1. Make 2 classes restaurant and review
 2. When user add a rate, modify the rate upon the previous rate and the rate of the user (calculate the rate again)
+
+## Lab07 
+1. Make classes and an interface to implement the review details to different classes.
+2. Make 2 methods to add/remove movies from the list.
+3. Include the name of the movie when review it. 

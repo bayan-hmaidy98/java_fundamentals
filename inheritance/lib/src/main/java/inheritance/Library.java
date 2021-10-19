@@ -16,7 +16,9 @@ public class Library {
     }
 
     public static void main(String[] args) {
-
+        Review review = new Review("nice", "bayan", 4);
+        Shop shop = new Shop("M & Z", "cloths", "25$");
+        System.out.println(shop.price);
     }
 
 }
