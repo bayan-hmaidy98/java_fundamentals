@@ -79,4 +79,27 @@ class LibraryTest {
         String expected = "Theater{name='Al-hamraa', moviesList=[Marriage story, Parasite, Eternal sunshine of the spotless mind, Amadeus], moviesReviews={Amadeus=Review{body='Musical movies are my favorites.', author='Bayan', numberOfStars=5}}}";
         assertEquals(expected, actual);
     }
+
+    @Test void addMovie(){
+        ArrayList<String> movies = new ArrayList<>();
+        Theater theater = new Theater("Al-hamraa",movies);
+        theater.addMovie("Whisper of the Heart");
+        theater.addMovie("Wolf Children");
+        String actual = movies.toString();
+        String expected = "[Whisper of the Heart, Wolf Children]";
+        assertEquals(expected, actual);
+    }
+
+    @Test void removeMovie(){
+        ArrayList<String> movies = new ArrayList<>();
+        Theater theater = new Theater("Al-hamraa",movies);
+        theater.addMovie("Whisper of the Heart");
+        theater.addMovie("Wolf Children");
+        theater.addMovie("Girl 2019");
+        theater.addMovie("The Flavor of Green Tea Over Rice");
+        theater.removeMovie("Girl 2019");
+        String actual = movies.toString();
+        String expected = "[Whisper of the Heart, Wolf Children, The Flavor of Green Tea Over Rice]";
+        assertEquals(expected, actual);
+    }
 }
