@@ -18,7 +18,7 @@ public class App {
     }
 
     public String linter(Path path) throws IOException {
-        int counter = 0;
+        int counter = 1;
         String error = "";
 
         BufferedReader reader = Files.newBufferedReader(path);
@@ -29,6 +29,7 @@ public class App {
                 error += ("Line " + counter + ": Missing semicolon.\n");
 
             }
+            counter++;
             line = reader.readLine();
         }
         return error;
