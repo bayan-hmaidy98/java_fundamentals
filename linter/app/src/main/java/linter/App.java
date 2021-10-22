@@ -17,8 +17,10 @@ public class App {
         return "Hello World!";
     }
 
-    public String linter(Path path) throws IOException {
-        int counter = 0;
+
+
+    public static String linter(Path path) throws IOException {
+        int counter = 1;
         String error = "";
 
         BufferedReader reader = Files.newBufferedReader(path);
@@ -29,12 +31,14 @@ public class App {
                 error += ("Line " + counter + ": Missing semicolon.\n");
 
             }
+            counter++;
             line = reader.readLine();
         }
         return error;
     }
 
-    public static void main(String[] args) {
-        System.out.println(new App().getGreeting());
-    }
+    public static void main(String[] args) throws IOException {
+        System.out.println(linter(Path.of("C:\\Users\\Bayan\\Desktop\\java_fundamentals\\linter\\app\\src\\main\\resources\\gate.js")));
+
+            }
 }
