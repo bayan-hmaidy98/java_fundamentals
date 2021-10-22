@@ -17,7 +17,9 @@ public class App {
         return "Hello World!";
     }
 
-    public String linter(Path path) throws IOException {
+
+
+    public static String linter(Path path) throws IOException {
         int counter = 1;
         String error = "";
 
@@ -35,7 +37,8 @@ public class App {
         return error;
     }
 
-    public static void main(String[] args) {
-        System.out.println(new App().getGreeting());
-    }
+    public static void main(String[] args) throws IOException {
+        System.out.println(linter(Path.of("C:\\Users\\Bayan\\Desktop\\java_fundamentals\\linter\\app\\src\\main\\resources\\gate.js")));
+
+            }
 }
